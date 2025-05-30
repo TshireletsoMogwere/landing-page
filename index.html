@@ -1,81 +1,809 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Landing Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page - Enterprise Digital Excellence</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Simple fade-in animation */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1s ease-out forwards;
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f8fafc',
+              100: '#f1f5f9',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81'
+            },
+            accent: {
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48'
+            },
+            neutral: {
+              50: '#fafafa',
+              100: '#f5f5f5',
+              200: '#e5e5e5',
+              700: '#404040',
+              800: '#262626',
+              900: '#171717'
+            }
+          },
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+            'display': ['Space Grotesk', 'system-ui', 'sans-serif']
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+            'fade-in-scale': 'fadeInScale 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+            'slide-in-left': 'slideInLeft 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+            'slide-in-right': 'slideInRight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+            'float': 'float 8s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2s ease-in-out infinite alternate',
+            'gradient-shift': 'gradientShift 8s ease-in-out infinite',
+            'spin-slow': 'spin 20s linear infinite',
+            'morph': 'morph 6s ease-in-out infinite',
+            'text-shimmer': 'textShimmer 3s ease-in-out infinite'
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+            'mesh-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            'hero-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)'
+          },
+          backdropBlur: {
+            'xs': '2px',
+          }
+        }
+      }
     }
-
-    @keyframes fadeIn {
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+    
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      33% {
+        transform: translateY(-30px) rotate(5deg);
+      }
+      66% {
+        transform: translateY(15px) rotate(-3deg);
+      }
+    }
+    
+    @keyframes pulseGlow {
+      from {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+      }
+      to {
+        box-shadow: 0 0 60px rgba(99, 102, 241, 0.8), 0 0 100px rgba(244, 63, 94, 0.3);
+      }
+    }
+    
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+    
+    @keyframes morph {
+      0%, 100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: rotate(0deg);
+      }
+      50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+        transform: rotate(180deg);
+      }
+    }
+    
+    @keyframes textShimmer {
+      0% {
+        background-position: -200% center;
+      }
+      100% {
+        background-position: 200% center;
+      }
+    }
+    
+    .hero-text {
+      background: linear-gradient(
+        90deg,
+        #667eea,
+        #764ba2,
+        #f093fb,
+        #f5576c,
+        #4facfe,
+        #00f2fe
+      );
+      background-size: 400% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: textShimmer 4s ease-in-out infinite;
+    }
+    
+    .glass-morphism {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-premium {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card-premium::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .card-premium:hover::before {
+      left: 100%;
+    }
+    
+    .card-premium:hover {
+      transform: translateY(-20px) scale(1.02);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+    
+    .gradient-border {
+      position: relative;
+      background: linear-gradient(145deg, #667eea, #764ba2);
+      padding: 2px;
+      border-radius: 1rem;
+    }
+    
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: white;
+      border-radius: calc(1rem - 2px);
+      z-index: -1;
+    }
+    
+    .floating-element {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    
+    .floating-element-1 {
+      top: 20%;
+      left: 10%;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .floating-element-2 {
+      top: 60%;
+      right: 15%;
+      animation: float 10s ease-in-out infinite reverse;
+      animation-delay: -2s;
+    }
+    
+    .floating-element-3 {
+      bottom: 30%;
+      left: 20%;
+      animation: float 12s ease-in-out infinite;
+      animation-delay: -4s;
+    }
+    
+    .section-padding {
+      padding: 8rem 0;
+    }
+    
+    @media (max-width: 768px) {
+      .section-padding {
+        padding: 4rem 0;
+      }
+    }
+    
+    .intersection-observer {
+      opacity: 0;
+      transform: translateY(80px);
+      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    .intersection-observer.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .nav-blur {
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .service-icon {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .service-icon:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    }
+    
+    .stats-counter {
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 700;
+    }
+    
+    .hero-background {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    .morphing-blob {
+      background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+      animation: morph 8s ease-in-out infinite;
+      opacity: 0.1;
+    }
   </style>
 </head>
-<body class="bg-[#FAF4EF] text-[#2F2F2F] scroll-smooth">
+<body class="font-sans antialiased bg-neutral-50 text-neutral-900 overflow-x-hidden">
 
-  <!-- Navbar -->
-  <header class="bg-white shadow sticky top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center h-16 px-4">
-      <h1 class="text-2xl font-bold text-[#5A4B3C]">MyCompany</h1>
-      <nav class="space-x-6">
-        <a href="#" class="hover:text-[#A68A64] transition-colors duration-300">Home</a>
-        <a href="#" class="hover:text-[#A68A64] transition-colors duration-300">Services</a>
-        <a href="#" class="hover:text-[#A68A64] transition-colors duration-300">About</a>
-        <a href="#" class="hover:text-[#A68A64] transition-colors duration-300">Contact</a>
-      </nav>
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20 lg:h-24">
+        <div class="flex items-center space-x-3">
+          <div class="relative">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 via-primary-600 to-accent-500 rounded-xl flex items-center justify-center shadow-lg animate-pulse-glow">
+              <span class="text-white font-bold text-lg font-display">L</span>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl font-bold font-display text-neutral-900">Landing Page</span>
+            <span class="text-xs font-medium text-neutral-500 tracking-widest uppercase">Digital</span>
+          </div>
+        </div>
+        
+        <div class="hidden lg:flex items-center space-x-12">
+          <a href="#services" class="relative text-neutral-700 hover:text-primary-600 transition-all duration-300 font-medium text-lg group">
+            Solutions
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#work" class="relative text-neutral-700 hover:text-primary-600 transition-all duration-300 font-medium text-lg group">
+            Portfolio
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#about" class="relative text-neutral-700 hover:text-primary-600 transition-all duration-300 font-medium text-lg group">
+            Expertise
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#contact" class="relative text-neutral-700 hover:text-primary-600 transition-all duration-300 font-medium text-lg group">
+            Contact
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <button class="bg-gradient-to-r from-primary-600 to-accent-500 hover:from-primary-700 hover:to-accent-600 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-2xl hover:scale-105 transform">
+            Start Project
+          </button>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <button class="lg:hidden p-3 rounded-xl hover:bg-neutral-100 transition-colors" id="mobile-menu-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
     </div>
-  </header>
+    
+    <!-- Mobile menu -->
+    <div class="lg:hidden glass-morphism border-t border-white/20 hidden" id="mobile-menu">
+      <div class="px-6 py-6 space-y-4">
+        <a href="#services" class="block text-neutral-700 hover:text-primary-600 py-3 text-lg font-medium">Solutions</a>
+        <a href="#work" class="block text-neutral-700 hover:text-primary-600 py-3 text-lg font-medium">Portfolio</a>
+        <a href="#about" class="block text-neutral-700 hover:text-primary-600 py-3 text-lg font-medium">Expertise</a>
+        <a href="#contact" class="block text-neutral-700 hover:text-primary-600 py-3 text-lg font-medium">Contact</a>
+        <button class="w-full bg-gradient-to-r from-primary-600 to-accent-500 text-white py-4 rounded-xl font-semibold mt-6">Start Project</button>
+      </div>
+    </div>
+  </nav>
 
   <!-- Hero Section -->
-  <section class="bg-[#DCCBC1] text-[#2F2F2F] py-20">
-    <div class="container mx-auto text-center px-6 fade-in">
-      <h2 class="text-4xl text-white mb-4 font-bold transition-opacity duration-1000">Elegant Solutions for Modern Business</h2>
-      <p class="text-lg mb-6 max-w-xl mx-auto">
-        We create clean, effective, and thoughtful digital experiences to elevate your brand and connect with your audience.
-      </p>
-      <a href="#" class="bg-[#5A4B3C] text-white px-6 py-3 rounded font-semibold hover:bg-[#483C31] transition duration-300">
-        Get Started
-      </a>
+  <section class="relative min-h-screen flex items-center justify-center hero-background overflow-hidden">
+    <!-- Floating Elements -->
+    <div class="floating-element floating-element-1">
+      <div class="w-32 h-32 morphing-blob"></div>
+    </div>
+    <div class="floating-element floating-element-2">
+      <div class="w-48 h-48 morphing-blob"></div>
+    </div>
+    <div class="floating-element floating-element-3">
+      <div class="w-24 h-24 morphing-blob"></div>
+    </div>
+    
+    <!-- Geometric Shapes -->
+    <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-1/3 left-1/3 w-96 h-96 bg-white/3 rounded-full blur-3xl animate-float" style="animation-delay: -4s;"></div>
+    
+    <div class="relative z-10 max-w-8xl mx-auto mt-20  px-6 lg:px-8 text-center">
+      <div class="animate-fade-in-up">
+        
+        
+        <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight font-display">
+          Architecting
+          <span class="block hero-text">Digital Futures</span>
+        </h1>
+        
+        <p class="text-2xl sm:text-3xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
+        We create smart digital systems that help big companies succeed in the future using the latest technology and innovative strategies.
+
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+          <button class="group relative bg-white text-primary-700 px-10 py-5 rounded-2xl font-bold text-xl hover:bg-neutral-50 transition-all duration-300 hover:shadow-2xl hover:scale-105 transform overflow-hidden">
+            <span class="relative z-10">Launch Your Vision</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+          </button>
+          <button class="glass-morphism text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-white/20 transition-all duration-300 hover:scale-105 transform">
+            Explore Our Work
+          </button>
+        </div>
+        
+        <!-- Trust Indicators -->
+        <div class="flex flex-wrap justify-center items-center gap-8 opacity-80">
+          <span class="text-white/60 font-medium">Trusted by industry leaders:</span>
+          <div class="flex items-center space-x-8">
+            <div class="w-24 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-sm">Brand</span>
+            </div>
+            <div class="w-24 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-sm">Brand2</span>
+            </div>
+            <div class="w-24 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-sm">Brand3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+   
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="py-16 bg-[#F3EEE9]">
-    <div class="container mx-auto text-center px-6 fade-in">
-      <h3 class="text-3xl font-bold mb-10 text-[#5A4B3C]">What We Offer</h3>
-      <div class="grid md:grid-cols-3 gap-10">
-        <div class="bg-white p-6 rounded shadow transform hover:-translate-y-2 hover:shadow-lg transition duration-300">
-          <h4 class="text-xl font-semibold mb-2 text-[#3E3E3E]">Web Development</h4>
-          <p class="text-[#5F5F5F]">Custom-built websites focused on speed, responsiveness, and seamless user experience.</p>
+  <!-- Services Section -->
+  <section id="services" class="section-padding bg-white relative">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-20 intersection-observer">
+        <div class="mb-6">
+          <span class="inline-block px-6 py-2 bg-primary-50 text-primary-600 rounded-full font-semibold text-sm uppercase tracking-wider">
+            Our Expertise
+          </span>
         </div>
-        <div class="bg-white p-6 rounded shadow transform hover:-translate-y-2 hover:shadow-lg transition duration-300">
-          <h4 class="text-xl font-semibold mb-2 text-[#3E3E3E]">Mobile Solutions</h4>
-          <p class="text-[#5F5F5F]">Reach your customers wherever they are with intuitive mobile-first designs.</p>
+        <h2 class="text-5xl lg:text-7xl font-bold text-neutral-900 mb-6 font-display">
+          Enterprise-Grade
+          <span class="bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">Solutions</span>
+        </h2>
+        <p class="text-2xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+          We architect scalable digital infrastructures that transform business operations and accelerate growth through innovative technology integration.
+        </p>
+      </div>
+      
+      <div class="grid lg:grid-cols-3 gap-10">
+        <div class="card-premium p-10 rounded-3xl intersection-observer group">
+          <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center mb-8">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-bold text-neutral-900 mb-6 font-display">Full-Stack Engineering</h3>
+          <p class="text-neutral-600 mb-8 text-lg leading-relaxed">Enterprise-level web applications built with microservices architecture, advanced caching strategies, and performance optimization techniques.</p>
+          <div class="space-y-4">
+            <div class="flex items-center text-neutral-700">
+              <div class="w-2 h-2 bg-primary-500 rounded-full mr-4"></div>
+              <span class="font-medium">React, Next.js, Node.js Expertise</span>
+            </div>
+            <div class="flex items-center text-neutral-700">
+              <div class="w-2 h-2 bg-primary-500 rounded-full mr-4"></div>
+              <span class="font-medium">Cloud-Native Architecture</span>
+            </div>
+            <div class="flex items-center text-neutral-700">
+              <div class="w-2 h-2 bg-primary-500 rounded-full mr-4"></div>
+              <span class="font-medium">99.9% Uptime Guarantee</span>
+            </div>
+          </div>
         </div>
-        <div class="bg-white p-6 rounded shadow transform hover:-translate-y-2 hover:shadow-lg transition duration-300">
-          <h4 class="text-xl font-semibold mb-2 text-[#3E3E3E]">Digital Strategy</h4>
-          <p class="text-[#5F5F5F]">Smart, data-driven digital marketing tailored to your goals and audience.</p>
+        
+        <div class="card-premium p-10 rounded-3xl intersection-observer group" style="animation-delay: 0.2s;">
+          <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center mb-8">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-bold text-neutral-900 mb-6 font-display">Mobile Innovation</h3>
+          <p class="text-neutral-600 mb-8 text-lg leading-relaxed">Native iOS and Android applications with cross-platform capabilities, featuring advanced UI/UX patterns and seamless API integrations.</p>
+          <div class="space-y-4">
+            <div class="flex items-center text-neutral-700">
+              <div class="w-2 h-2 bg-primary-500 rounded-full mr-4"></div>
+              <span class="font-medium">Swift, Kotlin, React Native</span>
+            </div>
+            <div class="flex items-center text-neutral-700">
+              <div class="w-2 h-2 bg-primary-500 rounded-full mr-4"></div>
+              <span class="font-medium">AR/VR Integration</span>
+            </div>
+            <div class="flex items-center text-neutral-700">
+              <div class="w-2 h-2 bg-primary-500 rounded-full mr-4"></div>
+              <span class="font-medium">Enterprise Security</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-premium p-10 rounded-3xl intersection-observer group" style="animation-delay: 0.4s;">
+          <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center mb-8">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-bold text-neutral-900 mb-6 font-display">AI & Data Science</h3>
+          <p class="text-neutral-600 mb-8 text-lg leading-relaxed">Machine learning models, predictive analytics, and intelligent automation systems that drive data-driven decision making at scale.</p>
+          <div class="space-y-4">
+            <div class="flex items-center text-neutral-700">
+              <div class="w-2 h-2 bg-primary-500 rounded-full mr-4"></div>
+              <span class="font-medium">TensorFlow, PyTorch</span>
+            </div>
+            <div class="flex items-center text-neutral-700">
+              <div class="w-2 h-2 bg-primary-500 rounded-full mr-4"></div>
+              <span class="font-medium">Real-time Analytics</span>
+            </div>
+            <div class="flex items-center text-neutral-700">
+              <div class="w-2 h-2 bg-primary-500 rounded-full mr-4"></div>
+              <span class="font-medium">Custom AI Solutions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section-padding bg-gradient-to-br from-neutral-900 via-primary-900 to-accent-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+    
+    <div class="relative z-10 max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-12 text-center">
+        <div class="intersection-observer">
+          <div class="stats-counter text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent" data-counter="500">0</div>
+          <div class="text-xl text-primary-200 font-medium">Projects Delivered</div>
+          <div class="text-sm text-primary-300 mt-2">Across 50+ Industries</div>
+        </div>
+        <div class="intersection-observer" style="animation-delay: 0.1s;">
+          <div class="stats-counter text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent" data-counter="150">0</div>
+          <div class="text-xl text-primary-200 font-medium">Enterprise Clients</div>
+          <div class="text-sm text-primary-300 mt-2">Fortune 500 Companies</div>
+        </div>
+        <div class="intersection-observer" style="animation-delay: 0.2s;">
+          <div class="stats-counter text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent" data-counter="99">0</div>
+          <div class="text-xl text-primary-200 font-medium">Success Rate %</div>
+          <div class="text-sm text-primary-300 mt-2">Client Satisfaction</div>
+        </div>
+        <div class="intersection-observer" style="animation-delay: 0.3s;">
+          <div class="stats-counter text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent" data-counter="12">0</div>
+          <div class="text-xl text-primary-200 font-medium">Years Excellence</div>
+          <div class="text-sm text-primary-300 mt-2">Industry Leadership</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Stack Section -->
+  <section class="section-padding bg-neutral-50">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-20 intersection-observer">
+        <h2 class="text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 font-display">
+          Cutting-Edge
+          <span class="bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">Technology Stack</span>
+        </h2>
+        <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+          We leverage the most advanced technologies and frameworks to build scalable, secure, and high-performance solutions.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+        <div class="card-premium p-6 rounded-2xl text-center intersection-observer group">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+            <span class="text-white font-bold text-lg">Rx</span>
+          </div>
+          <h4 class="font-bold text-neutral-900">React</h4>
+        </div>
+        
+        <div class="card-premium p-6 rounded-2xl text-center intersection-observer group" style="animation-delay: 0.1s;">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-black to-gray-800 rounded-xl flex items-center justify-center">
+            <span class="text-white font-bold text-lg">N</span>
+          </div>
+          <h4 class="font-bold text-neutral-900">Next.js</h4>
+        </div>
+        
+        <div class="card-premium p-6 rounded-2xl text-center intersection-observer group" style="animation-delay: 0.2s;">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+            <span class="text-white font-bold text-lg">N</span>
+          </div>
+          <h4 class="font-bold text-neutral-900">Node.js</h4>
+        </div>
+        
+        <div class="card-premium p-6 rounded-2xl text-center intersection-observer group" style="animation-delay: 0.3s;">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
+            <span class="text-white font-bold text-lg">GQL</span>
+          </div>
+          <h4 class="font-bold text-neutral-900">GraphQL</h4>
+        </div>
+        
+        <div class="card-premium p-6 rounded-2xl text-center intersection-observer group" style="animation-delay: 0.4s;">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+            <span class="text-white font-bold text-lg">AWS</span>
+          </div>
+          <h4 class="font-bold text-neutral-900">AWS</h4>
+        </div>
+        
+        <div class="card-premium p-6 rounded-2xl text-center intersection-observer group" style="animation-delay: 0.5s;">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center">
+            <span class="text-white font-bold text-lg">K8s</span>
+          </div>
+          <h4 class="font-bold text-neutral-900">Kubernetes</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section-padding bg-white">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-20 intersection-observer">
+        <h2 class="text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 font-display">
+          Client <span class="bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">Success Stories</span>
+        </h2>
+      </div>
+      
+      <div class="grid lg:grid-cols-3 gap-10">
+        <div class="card-premium p-8 rounded-3xl intersection-observer">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full mr-4"></div>
+            <div>
+              <h4 class="font-bold text-neutral-900">Tshireletso Mogwere</h4>
+              <p class="text-neutral-600">CTO, TechCorp</p>
+            </div>
+          </div>
+          <p class="text-neutral-700 text-lg leading-relaxed mb-6">
+            "Landing Page Digital transformed our entire digital infrastructure. Their expertise in cloud architecture and microservices helped us scale from 10K to 10M users seamlessly."
+          </p>
+          <div class="flex text-yellow-400">
+            ★★★★★
+          </div>
+        </div>
+        
+        <div class="card-premium p-8 rounded-3xl intersection-observer" style="animation-delay: 0.2s;">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-500 rounded-full mr-4"></div>
+            <div>
+              <h4 class="font-bold text-neutral-900">Kutlwano Take</h4>
+              <p class="text-neutral-600">CEO, InnovateLab</p>
+            </div>
+          </div>
+          <p class="text-neutral-700 text-lg leading-relaxed mb-6">
+            "The AI-powered analytics platform they built for us increased our operational efficiency by 300%. Their technical depth is unmatched in the industry."
+          </p>
+          <div class="flex text-yellow-400">
+            ★★★★★
+          </div>
+        </div>
+        
+        <div class="card-premium p-8 rounded-3xl intersection-observer" style="animation-delay: 0.4s;">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mr-4"></div>
+            <div>
+              <h4 class="font-bold text-neutral-900">Nkululeko Vuyo</h4>
+              <p class="text-neutral-600">VP Engineering, DataFlow</p>
+            </div>
+          </div>
+          <p class="text-neutral-700 text-lg leading-relaxed mb-6">
+            "Working with Landing Page was a game-changer. They delivered a complex enterprise solution 2 months ahead of schedule with zero downtime deployment."
+          </p>
+          <div class="flex text-yellow-400">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-br from-primary-600 via-primary-700 to-accent-600 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%23ffffff" fill-opacity="0.1" fill-rule="evenodd"/%3E%3C/svg%3E')] opacity-20"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center">
+      <div class="intersection-observer">
+        <div class="mb-8">
+          <span class="inline-block px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full text-white font-medium text-lg border border-white/20">
+            🎯 Ready to Scale?
+          </span>
+        </div>
+        
+        <h2 class="text-5xl lg:text-7xl font-bold text-white mb-8 font-display leading-tight">
+          Transform Your Business
+          <span class="block">Into a Digital Powerhouse</span>
+        </h2>
+        
+        <p class="text-2xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed">
+          Join the ranks of industry leaders who trust Landing Page Digital to architect their digital transformation. Let's build something extraordinary together.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+          <button class="group bg-white text-primary-700 px-10 py-5 rounded-2xl font-bold text-xl hover:bg-neutral-50 transition-all duration-300 hover:shadow-2xl hover:scale-105 transform">
+            <span class="mr-2">🚀</span>
+            Start Your Transformation
+          </button>
+          <button class="glass-morphism text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-white/20 transition-all duration-300 hover:scale-105 transform">
+            <span class="mr-2">📞</span>
+            Schedule Strategy Call
+          </button>
+        </div>
+        
+        <div class="text-white/70 text-lg">
+          <span class="mr-8">✓ Free consultation</span>
+          <span class="mr-8">✓ 30-day money-back guarantee</span>
+          <span>✓ 24/7 premium support</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-[#5A4B3C] text-white py-6">
-    <div class="container mx-auto text-center">
-      <p>&copy; 2025 MyCompany. All rights reserved.</p>
+  <footer class="bg-neutral-900 text-white py-16">
+    <div class="max-w-8xl mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-5 gap-12 mb-12">
+        <div class="col-span-2">
+          <div class="flex items-center space-x-3 mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+              <span class="text-white font-bold text-lg font-display">L</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-2xl font-bold font-display">Landing Page</span>
+              <span class="text-xs font-medium text-neutral-400 tracking-widest uppercase">Digital</span>
+            </div>
+          </div>
+          <p class="text-neutral-300 max-w-md text-lg leading-relaxed mb-6">
+            Pioneering digital transformation through innovative technology solutions and strategic consulting for enterprise clients worldwide.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="w-12 h-12 bg-neutral-800 hover:bg-primary-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110">
+              <span class="text-lg">📧</span>
+            </a>
+            <a href="#" class="w-12 h-12 bg-neutral-800 hover:bg-primary-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110">
+              <span class="text-lg">💼</span>
+            </a>
+            <a href="#" class="w-12 h-12 bg-neutral-800 hover:bg-primary-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110">
+              <span class="text-lg">🐦</span>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-bold mb-6 text-lg">Solutions</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li><a href="#" class="hover:text-primary-400 transition-colors">Enterprise Development</a></li>
+            <li><a href="#" class="hover:text-primary-400 transition-colors">Mobile Applications</a></li>
+            <li><a href="#" class="hover:text-primary-400 transition-colors">AI & Machine Learning</a></li>
+            <li><a href="#" class="hover:text-primary-400 transition-colors">Cloud Architecture</a></li>
+            <li><a href="#" class="hover:text-primary-400 transition-colors">DevOps & Automation</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-bold mb-6 text-lg">Industries</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li><a href="#" class="hover:text-primary-400 transition-colors">Financial Services</a></li>
+            <li><a href="#" class="hover:text-primary-400 transition-colors">Healthcare</a></li>
+            <li><a href="#" class="hover:text-primary-400 transition-colors">E-commerce</a></li>
+            <li><a href="#" class="hover:text-primary-400 transition-colors">Manufacturing</a></li>
+            <li><a href="#" class="hover:text-primary-400 transition-colors">Education</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-bold mb-6 text-lg">Contact</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-center">
+              <span class="mr-3">📧</span>
+              hello@LandingPage@gmail.com
+            </li>
+            <li class="flex items-center">
+              <span class="mr-3">📞</span>
+              +27 11 123 4567
+            </li>
+            <li class="flex items-center">
+              <span class="mr-3">📍</span>
+              Sandton, Johannesburg
+            </li>
+            <li class="flex items-center">
+              <span class="mr-3">🌍</span>
+              Global Delivery Centers
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-neutral-400">&copy; 2025 Landing Page Digital. All rights reserved.</p>
+        <div class="flex space-x-8 mt-4 md:mt-0">
+          <a href="#" class="text-neutral-400 hover:text-primary-400 transition-colors">Privacy Policy</a>
+          <a href="#" class="text-neutral-400 hover:text-primary-400 transition-colors">Terms of Service</a>
+          <a href="#" class="text-neutral-400 hover:text-primary-400 transition-colors">Cookie Policy</a>
+          <a href="#" class="text-neutral-400 hover:text-primary-400 transition-colors">Security</a>
+        </div>
+      </div>
     </div>
   </footer>
 
+  <script src="./script.js"></script>
 </body>
 </html>
