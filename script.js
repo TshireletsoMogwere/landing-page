@@ -54,8 +54,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.querySelectorAll('.intersection-observer').forEach(el => observer.observe(el));
-
-// Enhanced counter animation with easing
+// Counter animation with hover trigger
 const animateCounter = (element, target) => {
   const duration = 2000;
   const start = performance.now();
@@ -81,6 +80,17 @@ const animateCounter = (element, target) => {
   requestAnimationFrame(updateCounter);
 };
 
+// Handle hover to restart counters
+const statsSection = document.querySelector('.section-padding');
+if (statsSection) {
+  statsSection.addEventListener('mouseenter', () => {
+    document.querySelectorAll('[data-counter]').forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-counter'), 10) || 0;
+      animateCounter(counter, target);
+    });
+  });
+}
+
 // Counter animation with intersection observer
 const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -94,6 +104,7 @@ const counterObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 document.querySelectorAll('[data-counter]').forEach(counter => counterObserver.observe(counter));
+
 
 // Dynamic navbar with multiple scroll states
 let lastScrollTop = 0;
